@@ -1,0 +1,35 @@
+# Python bytecode
+*.pyc
+__pycache__/
+
+# Database files (adjust based on your database)
+db.sqlite3
+db.sqlite3-journal  # If using SQLite
+
+# Local development settings
+local_settings.py
+
+# Generated static files (if using collectstatic)
+staticfiles/
+
+# IDE/editor specific files
+.vscode/  # For Visual Studio Code
+build/  # Common for various IDE build outputs
+
+# Virtual environment (use a separate tool to manage)
+.env  # Example environment variable file
+venv/  # Example virtual environment directory
+
+# Third-party libraries (manage dependencies with pipenv/requirements.txt)
+requirements.txt*  # Example dependency management files
+
+# Logs and temporary files
+*.log
+*.pot
+
+# Coverage reports
+.coverage
+
+# Test database (if using a separate one)
+test_db.sqlite3
+test_db.sqlite3-journal
