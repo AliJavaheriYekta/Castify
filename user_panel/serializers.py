@@ -4,7 +4,7 @@ from django.core.validators import validate_email as django_default_email_valida
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
-from user_panel.models import CustomUser
+from user_panel.models import CustomUser, Profile
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
@@ -55,3 +55,9 @@ class LoginSerializer(serializers.Serializer):
         else:
             raise serializers.ValidationError('Username and password are required.')
         return data
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = '__all__'

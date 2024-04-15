@@ -1,11 +1,12 @@
 from django.contrib.auth import authenticate
-from rest_framework import status
-from rest_framework.permissions import AllowAny
+from rest_framework import status, viewsets
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from user_panel.serializers import UserRegistrationSerializer, LoginSerializer
+from user_panel.models import Profile
+from user_panel.serializers import UserRegistrationSerializer, LoginSerializer, ProfileSerializer
 
 
 # Create your views here.
@@ -42,3 +43,12 @@ class LoginView(APIView):
                 }, status=status.HTTP_200_OK)
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ProfileViewSet(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Profile.objects.filter(user=self.request.user)
